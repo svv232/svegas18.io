@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>Hi, I'm Sai Vegasena</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title" content="Hi, I'm Sai Vegasena.">
+    <meta property="og:description" content="This is my personal site. Enjoy your stay!">
+    <meta property="og:url" content="https://svegas.io">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <body>
+        <div class="content">
+            <div id="intro">
+            <h1 id="hello"></h1>
+            <div class="school">
+              <h4>New York University</h4>
+              <p><span>2016 - 2020 (expected)</span></p>
+              <ul>
+                <li><p>Pursuing B.S. in Computer Science</p></li>
+                <li><p><span>Relevant Coursework: </span>Data Structures, Discrete Mathematics, Object Oriented Programming, Calculus II</p></li>
+                <li><p><span>Cumulative GPA: </span>3.800/4.000</p></li>
+          <li>
+            <div class="school">
+              <h4>Coppell High School</h4>
+              <p><span>2012 - 2016</span></p>
+      </section>
+
+      <section id="skills">
+        <h2 class="header" id="skills">Skills</h2>
+        <ul>
+          <li>
+            <h4>Languages</h4>
+            <ul>
+              <li><p><span>Proficient: </span>Python, HTML, CSS, Javascript/ES6, SQL, Java, Bash</p></li>
+              <li><p><span>Familiar: </span>C++, PHP</p></li>
+            </ul>
+          </li>
+          <li>
+            <h4>Technologies</h4>
+            <ul>
+              <li><p><span>Proficient: </span>Flask, React.js, Git, Node.js, Express.js, jQuery, Bootstrap, MongoDB, Sass, SQLAlchemy</p></li>
+              <li><p><span>Familiar: </span>Amazon AWS, d3.js, Nginx</p></li>
+            </ul>
+          </li>
+        </ul>
+      </section>
+      <hr />
+      <footer>
+        <p id="scrobble"><span id="scrobble_pre">Currently listening to</span> <span id="scrobble_title">...</span> by <span id="scrobble_artist">...</span>.</p>
+       
+      </footer>
+    </div>
+  </body>
+  <script type="text/javascript">
+    // Minified from Justin Windle: https://codepen.io/soulwire/pen/mErPAK
+    "use strict";function _classCallCheck(t,e){if(!(t instanceof e))throw new TypeError("Cannot call a class as a function")}var TextScramble=function(){function t(e){_classCallCheck(this,t),this.el=e,this.chars="!<>-_\\/[]{}—=+*^?#________",this.update=this.update.bind(this)}return t.prototype.setText=function(t){var e=this,a=this.el.innerText,r=Math.max(a.length,t.length),s=new Promise(function(t){return e.resolve=t});this.queue=[];for(var h=0;r>h;h++){var n=a[h]||"",i=t[h]||"",o=Math.floor(40*Math.random()),u=o+Math.floor(40*Math.random());this.queue.push({from:n,to:i,start:o,end:u})}return cancelAnimationFrame(this.frameRequest),this.frame=0,this.update(),s},t.prototype.update=function(){for(var t="",e=0,a=0,r=this.queue.length;r>a;a++){var s=this.queue[a],h=s.from,n=s.to,i=s.start,o=s.end,u=s["char"];this.frame>=o?(e++,t+=n):this.frame>=i?((!u||Math.random()<.28)&&(u=this.randomChar(),this.queue[a]["char"]=u),t+='<span class="dud">'+u+"</span>"):t+=h}this.el.innerHTML=t,e===this.queue.length?this.resolve():(this.frameRequest=requestAnimationFrame(this.update),this.frame++)},t.prototype.randomChar=function(){return this.chars[Math.floor(Math.random()*this.chars.length)]},t}();
+    var phrases = ["Hi, I'm Sai Vegasena!", "సయ వగసన!"];
+    var fx = new TextScramble(document.getElementById("hello"));
+    var counter = 0;
+    var next = function next() {
+      fx.setText(phrases[counter]).then(function () {
+        setTimeout(next, 1200);
+      });
+      counter = (counter + 1) % phrases.length;
+    };
+    next();
+  </script>
+  <script type="text/javascript">
+    var request = new XMLHttpRequest();
+    request.open("GET", "https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=rkty13&api_key={{ scrobble_key }}&format=json&limit=1", true);
+    request.onload = function() {
+      if (request.status >= 200 && request.status < 400) {
+        var data = JSON.parse(request.responseText);
+        var recent = data.recenttracks.track[0];
+        if (!recent.hasOwnProperty("@attr")) {
+          document.getElementById("scrobble_pre").textContent = "Most recently listened to";
+        }
+        document.getElementById("scrobble_title").textContent = recent.name;
+        document.getElementById("scrobble_artist").textContent = recent.artist["#text"];
+      } else {
+        console.error("Current track could not be loaded.");
+        document.getElementById("scrobble").innerHTML = "Not listening to any music at the moment.";
+      }
+    };
+    request.onerror = function() {
+      console.error("Current track could not be loaded.");
+      document.getElementById("scrobble").innerHTML = "Not listening to any music at the moment.";
+    };
+    request.send();
+  </script>
+</html>
