@@ -1,24 +1,24 @@
 body {
-    background-color: #2c2c2c;
+    background-color: #393f4d;
     margin: 0;
     text-align: center;
 }
 ::selection {
-    background: #ff0;
-}
+    background: #333D51}
+
 a {
     text-decoration: none;
-    font-family: Roboto;
-    color: #F8F8F8;
-    font-weight: thin;
-
+    font-family:'Roboto', sans-serif;
+    color: #F3E8EB;
+    font-weight: 100;
 }
+
 h1 {
     text-align: center;
-    font-size: 20px;
-    font-family: Roboto;
+    font-size: 45px;
+    font-family: 'Roboto', sans-serif;
     margin-top: 30px;
     margin-bottom: 0px;
-    font-weight: thin;
-    color: black;
+    font-weight: 100;
+    font-color: white;
 }
