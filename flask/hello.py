@@ -4,8 +4,6 @@ import os
 
 app = Flask(__name__, static_url_path=str(os.path.dirname(__file__)))
 
-#app.config["APPLICATION__ROOT"] = "/mnt/c/Users/Sai Vegasena/Downloads/summer/flask"
-
 @app.route("/")
 def index():
     return render_template("index.html")
