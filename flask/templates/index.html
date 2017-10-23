@@ -9,9 +9,7 @@
   </head>
   <body>
     <div class = major_heading>
-      <h1 id=name>
-        <a href = "/">Sai Vegasena</a> 
-      </h1>
+        <h1 id="name"> </h1>
     </div>
     <div id="intro">
       <p>
@@ -23,4 +21,22 @@
       </p>
     </div>
   </body>
+  <script type="text/javascript">
+
+    //TextScramble from Justin Windle: https://codepen.io/soulwire/pen/mErPAK 
+    //Idea from Robert Kim: https://github.com/rkty13/ and robertkim.io
+
+"use strict";function _classCallCheck(t,e){if(!(t instanceof e))throw new TypeError("Cannot call a class as a function")}var TextScramble=function(){function t(e){_classCallCheck(this,t),this.el=e,this.chars="!<>-_\\/[]{}—=+*^?#________",this.update=this.update.bind(this)}return t.prototype.setText=function(t){var e=this,a=this.el.innerText,r=Math.max(a.length,t.length),s=new Promise(function(t){return e.resolve=t});this.queue=[];for(var h=0;r>h;h++){var n=a[h]||"",i=t[h]||"",o=Math.floor(40*Math.random()),u=o+Math.floor(40*Math.random());this.queue.push({from:n,to:i,start:o,end:u})}return cancelAnimationFrame(this.frameRequest),this.frame=0,this.update(),s},t.prototype.update=function(){for(var t="",e=0,a=0,r=this.queue.length;r>a;a++){var s=this.queue[a],h=s.from,n=s.to,i=s.start,o=s.end,u=s["char"];this.frame>=o?(e++,t+=n):this.frame>=i?((!u||Math.random()<.28)&&(u=this.randomChar(),this.queue[a]["char"]=u),t+='<span class="dud">'+u+"</span>"):t+=h}this.el.innerHTML=t,e===this.queue.length?this.resolve():(this.frameRequest=requestAnimationFrame(this.update),this.frame++)},t.prototype.randomChar=function(){return this.chars[Math.floor(Math.random()*this.chars.length)]},t}();
+   
+    var phrases = ["Sai Vegasena","Programmer","Security Researcher", "Machine Learning Enthusiast"];
+    var scramble = new TextScramble(document.getElementById("name"));
+    var count = 0;
+    var tick = function tick() {
+      scramble.setText(phrases[count]).then(function () {
+        setTimeout(tick, 1700);
+      });
+      count = (count + 1) % phrases.length;
+    };
+    tick();
+  </script>
 </html>

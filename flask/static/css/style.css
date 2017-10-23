@@ -13,6 +13,11 @@ a {
     font-weight: 100;
 }
 
+
+h1#name {
+    font-color: #F3E8EB
+}
+
 h1 {
     text-align: middle;
     font-size: 57px;
