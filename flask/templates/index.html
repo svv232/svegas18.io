@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 
 <html>
-  <head>
+  
+    <head>
     <title>Sai Vegasena</title>
     <link rel="stylesheet" type="text/css" href="static/css/style.css">
-    <link rel = "icon" type="image/x-icon" href="/favicon.ico">
+    <link rel = "icon" type="image/x-icon" href="static/favicon.ico">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:500|Roboto:100" rel="stylesheet"> 
   </head>
   <body>
@@ -21,6 +22,43 @@
       </p>
     </div>
   </body>
-  <script src = "/static/scramble.js"></script>
-  <script src ="/static/scramble_script.js"></script>
+  
+  <script src = "static/scramble.js"></script>
+  
+  <script src ="static/scramble_script.js"></script>
+  
+<!-- count particles -->
+<div class="count-particles">
+  <span class="js-count-particles">--</span> particles
+</div>
+
+<!-- particles.js container -->
+<div id="particles-js"></div>
+
+<!-- scripts -->
+<script src="/static/node_modules/particles.js/particles.js"></script>
+<script src="/static/node_modules/particles.js/demo/js/app.js"></script>
+
+<!-- stats.js -->
+<script src="/static/node_modules/particles.js/demo/js/lib/stats.js"></script>
+<script>
+  var count_particles, stats, update;
+  stats = new Stats;
+  stats.setMode(0);
+  stats.domElement.style.position = 'absolute';
+  stats.domElement.style.left = '0px';
+  stats.domElement.style.top = '0px';
+  document.body.appendChild(stats.domElement);
+  count_particles = document.querySelector('.js-count-particles');
+  update = function() {
+    stats.begin();
+    stats.end();
+    if (window.pJSDom[0].pJS.particles && window.pJSDom[0].pJS.particles.array) {
+      count_particles.innerText = window.pJSDom[0].pJS.particles.array.length;
+    }
+    requestAnimationFrame(update);
+  };
+  requestAnimationFrame(update);
+</script>
+
 </html>
